@@ -2,8 +2,6 @@ pipeline {
   agent any
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
-    skipDefaultCheckout true
-
   }
   post {
     aborted {
@@ -34,16 +32,6 @@ pipeline {
         message "Should we deploy?"
         submitter "beedemo-ops"
         submitterParameter "APPROVER"
-      }
-    }
-    stage('Test') {
-      agent { label 'nodejs-app' }
-      steps {
-        checkout scm
-        container('nodejs') {
-          echo 'Hello World!'   
-          sh 'node --version'
-        }
       }
     }
   }
