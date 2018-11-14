@@ -2,8 +2,6 @@ pipeline {
   agent any
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
-    skipDefaultCheckout true
-
   }
   post {
     aborted {
@@ -36,6 +34,5 @@ pipeline {
         submitterParameter "APPROVER"
       }
     }
-    }
-}
+  }
 }
